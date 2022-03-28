@@ -1,0 +1,75 @@
+<template>
+    <lightning-card  title="Accounts">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered slds-no-row-hover">
+            <thead>
+            <tr class="slds-line-height_reset">
+                <th class="" scope="col">
+                <div class="slds-truncate" title="Name">Name</div>
+                </th>
+                <th class="" scope="col">
+                <div class="slds-truncate" title="Rating">Rating</div>
+                </th>
+                <th class="" scope="col">
+                <div class="slds-truncate" title="Delete">Delete</div>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+                <template iterator:it={accounts.data}>
+                    <tr key={it.value.Id}>
+                        <td data-label="Name" id={it.value.Id} class="" onmouseenter={handlemouseenter} onmouseleave={handlemouseleave}>
+                            <c-field 
+                                value={it.value.Name} 
+                                oneditbuttonclick={handleEditButtonClick} 
+                                onchangevalue={handleChangeValue}
+                                is-edit-button-disabled={isEditButtonDisabled}
+                                record-id={it.value.Id} 
+                                field-name="Name">
+                            </c-field>
+                        </td>
+                        <td data-label="Rating" id={it.value.Id} class="" onmouseenter={handlemouseenter} onmouseleave={handlemouseleave}>
+                            <c-field 
+                                value={it.value.Rating} 
+                                oneditbuttonclick={handleEditButtonClick} 
+                                onchangevalue={handleChangeValue}
+                                is-edit-button-disabled={isEditButtonDisabled}
+                                record-id={it.value.Id} 
+                                field-name="Rating">
+                            </c-field>
+                        </td>
+                        <td data-label="Delete">
+                            <div class="slds-cell-wrap slds-align_absolute-center">
+                                <lightning-button-icon 
+                                    class="slds-icon-text-error" 
+                                    icon-name="utility:delete"  
+                                    variant="bare" 
+                                    alternative-text="delete" 
+                                    title="delete"
+                                    size="large"
+                                    value={it.value.Id}
+                                    onclick={handleDelete}>
+                                </lightning-button-icon>
+                            </div>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+        <div if:true={isShowFooter} class="slds-align_absolute-center slds-p-top_small"> 
+            <div class="slds-p-right_xx-small">                
+                <lightning-button 
+                    label="Cancel"
+                    onclick={handleCancel}
+                    variant="neutral"
+                ></lightning-button>  
+            </div>
+            <div class="slds-p-left_xx-small">
+                <lightning-button 
+                    label="Save"
+                    onclick={handleSave}
+                    variant="brand">
+                </lightning-button>
+            </div>
+        </div>  
+    </lightning-card>
+</template>

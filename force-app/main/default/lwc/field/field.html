@@ -1,0 +1,21 @@
+<template >
+    <div class="slds-grid slds-grid_align-spread">    
+        <div if:false = {isInputShown} class="slds-col">
+            <lightning-formatted-text value={value}></lightning-formatted-text>
+        </div>
+        <div if:true = {isInputShown} class="slds-col slds-size_11-of-12">
+            <div>
+                <lightning-input type="text" value={value} onchange={handleChange}></lightning-input>
+            </div>
+        </div>
+        <lightning-button-icon 
+            icon-name="utility:edit"  
+            variant="bare" 
+            alternative-text="Edit" 
+            title="Edit"
+            onclick={handleEditButton}
+            disabled={isEditButtonDisabled}
+            class="slds-hidden">
+        </lightning-button-icon>
+    </div>
+</template>
